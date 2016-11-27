@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista czujników</title>
+    </head>
+    <body>
+        <h1>Lista czujników</h1>
+        <ol>
+            {% for s in sensors %}
+                <li><a href="/{{ s.id }}/">{{ s }}</a></li>
+            {% endfor %}
+        </ol>
+    </body>
+</html>

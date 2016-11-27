@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pomiary z czujnika {{ sensor }}</title>
+    </head>
+    <body>
+        <h1>Pomiary z czujnika <tt>{{ sensor }}</tt></h1>
+        <p><a href="/">powrót do listy czujników</a></p>
+        <table border="1">
+            <tr>
+                {% for c in columns %}
+                    <th>{{ c }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in measurements %}
+                <tr>
+                    {% for c in row %}
+                        <td>{{ c }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
