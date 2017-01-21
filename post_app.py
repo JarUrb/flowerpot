@@ -30,10 +30,11 @@ def data_gen(c_id, m_id, device_type, rssi, vcc, temp, moisture, light, num):
         num += 1
 
 
-for data in data_gen(c_id=HUB_ID, m_id=2, device_type='pot', rssi=100, vcc=4.5, temp=20, moisture=50, light=100, num=1):
-    print(datetime.now())
-    print(data)
-    r = requests.post(POST_URL, data='payload='+dumps([data]), headers=headers)
-    print(r.status_code, r.json())
-    sleep(10)
-    print()
+def post_fake_data():
+    for data in data_gen(c_id=HUB_ID, m_id=2, device_type='pot', rssi=100, vcc=4.5, temp=20, moisture=50, light=100, num=1):
+        print(datetime.now())
+        print(data)
+        r = requests.post(POST_URL, data='payload='+dumps([data]), headers=headers)
+        print(r.status_code, r.json())
+        sleep(10)
+        print()
