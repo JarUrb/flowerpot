@@ -51,3 +51,13 @@ class Measurement(Base):
 
     def __repr__(self):
         return '<Measurement {} {}>'.format(self.timestamp, self.sensor)
+
+
+def get_or_create_sensor(session, name):
+    sensor = session.query(Sensor).filter_by(name=name).first()
+    if sensor:
+        return sensor
+    else:
+        sensor = Sensor(name)
+        session.add(sensor)
+        return sensor

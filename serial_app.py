@@ -7,22 +7,12 @@ import serial
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from models import Base, Measurement, Sensor
+from models import Base, Measurement, get_or_create_sensor
 from settings import BAUD_RATE, DATABASE_URI, TTY_DEVICE
 
 
 DEMO_MODE = b'd\r\n'
 NORMAL_MODE = b'n\r\n'
-
-
-def get_or_create_sensor(session, name):
-    sensor = session.query(Sensor).filter_by(name=name).first()
-    if sensor:
-        return sensor
-    else:
-        sensor = Sensor(name)
-        session.add(sensor)
-        return sensor
 
 
 engine = create_engine(DATABASE_URI)
