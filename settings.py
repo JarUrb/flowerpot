@@ -1,4 +1,4 @@
-BAUD_RATE = 19200
+BAUD_RATE = 9600
 DATABASE_URI = 'sqlite:///database.db'
-TTY_DEVICE = '/dev/ttyUSB0'
+TTY_DEVICE = '/dev/ttyAMA0'
 POST_URL = 'http://127.0.0.1:8000/payload'
