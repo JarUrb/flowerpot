@@ -64,7 +64,15 @@ def post_unposted_measurements():
     session = DBSession()
     measurements_to_post = session.query(Measurement).filter_by(posted=False)
     for measurement in measurements_to_post:
-        r = post_measurements([measurement])
+        try:
+            response = post_measurements([measurement])
+        except requests.exceptions.ConnectionError:
+            response = None
+        if response and response.status_code == 200:
+            if response.json().get('result'):
+                measurement.posted = True
+                session.add(measurement)
+                session.commit()
 
 
 if __name__ == '__main__':
