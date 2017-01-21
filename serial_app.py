@@ -35,7 +35,7 @@ while True:
     line = data.decode('UTF-8')
     try:
         measurement_data = json.loads(line)
-    except json.JSONDecodeError:
+    except ValueError:
         measurement_data = None
     if measurement_data:
         sensor = get_or_create_sensor(session, measurement_data.get('ID'))
