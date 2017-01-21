@@ -24,6 +24,7 @@ COLUMNS = OrderedDict([
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
+app.debug = True
 db = SQLAlchemy(app)
 
 
@@ -50,4 +51,4 @@ def measurement(sensor_id):
 
 
 if __name__ == '__main__':
-    app.run('127.0.0.1', 5000)
+    app.run('0.0.0.0', 5000)
