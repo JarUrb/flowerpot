@@ -19,6 +19,7 @@ COLUMNS = OrderedDict([
     ('light', 'Oświetlenie'),
     ('rssi', 'Sygnał'),
     ('vcc', 'Napięcie [V]'),
+    ('posted', 'Wysłane?'),
 ])
 
 

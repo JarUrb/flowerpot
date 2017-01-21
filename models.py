@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -35,6 +35,7 @@ class Measurement(Base):
     timestamp = Column(DateTime)
     sensor_id = Column(Integer, ForeignKey(Sensor.id))
     sensor = relationship(Sensor)
+    posted = Column(Boolean, default=False)
 
     def __init__(self, temperature, moisture, light, rssi, vcc, sensor, ordinal, timestamp=None, *args, **kwargs):
         self.temperature = temperature
