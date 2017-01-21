@@ -5,7 +5,7 @@ from time import sleep
 
 import requests
 
-from settings import POST_URL
+from settings import POST_URL, HUB_ID
 
 
 headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
@@ -30,7 +30,7 @@ def data_gen(c_id, m_id, device_type, rssi, vcc, temp, moisture, light, num):
         num += 1
 
 
-for data in data_gen(c_id='02:42:d5:8f:e3:a1', m_id=2, device_type='pot', rssi=100, vcc=4.5, temp=20, moisture=50, light=100, num=1):
+for data in data_gen(c_id=HUB_ID, m_id=2, device_type='pot', rssi=100, vcc=4.5, temp=20, moisture=50, light=100, num=1):
     print(datetime.now())
     print(data)
     r = requests.post(POST_URL, data='payload='+dumps([data]), headers=headers)
