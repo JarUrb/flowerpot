@@ -12,6 +12,7 @@ from settings import BAUD_RATE, DATABASE_URI, TTY_DEVICE
 
 
 DEMO_MODE = b'd\r\n'
+NORMAL_MODE = b'n\r\n'
 
 
 def get_or_create_sensor(session, name):
@@ -35,7 +36,7 @@ session = DBSession()
 
 ser = serial.Serial(TTY_DEVICE, BAUD_RATE, timeout=10)
 print(ser.name)
-ser.write(DEMO_MODE)
+ser.write(NORMAL_MODE)
 
 data = b''
 
