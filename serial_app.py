@@ -37,20 +37,23 @@ while True:
         measurement_data = json.loads(line)
     except ValueError:
         measurement_data = None
-    if measurement_data:
+    if measurement_data and isinstance(measurement_data, dict):
         sensor = get_or_create_sensor(session, measurement_data.get('ID'))
-        measurement = Measurement(
-            light=measurement_data.get('Light'),
-            moisture=measurement_data.get('Moisture'),
-            ordinal=measurement_data.get('Nr'),
-            rssi=measurement_data.get('Rssi'),
-            sensor=sensor,
-            temperature=measurement_data.get('Temp'),
-            vcc=measurement_data.get('Vcc'),
-        )
-        session.add(measurement)
-        session.commit()
-        print(datetime.datetime.now(), measurement_data)
+        field_transl = {
+            'light': 'Light',
+            'moisture': 'Moisture',
+            'ordinal': 'Nr',
+            'rssi': 'Rssi',
+            'temperature': 'Temp',
+            'vcc': 'Vcc',
+        }
+        initial_data = {k: measurement_data.get(v) for k, v in field_transl.items()}
+        initial_data['sensor'] = sensor
+        if all(initial_data.values()):
+            measurement = Measurement(**initial_data)
+            session.add(measurement)
+            session.commit()
+            print(datetime.datetime.now(), measurement_data)
         data = b''
 
 ser.close()
