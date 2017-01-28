@@ -2,10 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Lista czujników</title>
+        <title>{{ hub_id }} - Lista czujników</title>
     </head>
     <body>
-        <h1>Lista czujników</h1>
+        <h1>Lista czujników centralki <tt>{{ hub_id }}</tt></h1>
         <ol>
             {% for s in sensors %}
                 <li><a href="/{{ s.pk }}/">{{ s }}</a></li>

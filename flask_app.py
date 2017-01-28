@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 
 from models import Measurement, Sensor
-from settings import DATABASE_URI
+from settings import DATABASE_URI, HUB_ID
 
 
 COLUMNS = OrderedDict([
@@ -34,6 +34,7 @@ def root():
     sensors = db.session.query(Sensor).all()
     return render_template(
         'sensors.html',
+        hub_id=HUB_ID,
         sensors=sensors,
     )
 
