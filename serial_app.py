@@ -38,7 +38,6 @@ while True:
     except ValueError:
         measurement_data = None
     if measurement_data and isinstance(measurement_data, dict):
-        sensor = get_or_create_sensor(session, measurement_data.get('ID'))
         field_transl = {
             'light': 'Light',
             'moisture': 'Moisture',
@@ -48,8 +47,8 @@ while True:
             'vcc': 'Vcc',
         }
         initial_data = {k: measurement_data.get(v) for k, v in field_transl.items()}
-        initial_data['sensor'] = sensor
         if all(initial_data.values()):
+            initial_data['sensor'] = get_or_create_sensor(session, measurement_data.get('ID'))
             measurement = Measurement(**initial_data)
             session.add(measurement)
             session.commit()
