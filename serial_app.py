@@ -32,7 +32,7 @@ data = b''
 
 while True:
     data += ser.readline()
-    line = data.decode('UTF-8')
+    line = data.decode('UTF-8', errors='ignore')
     try:
         measurement_data = json.loads(line)
     except ValueError:
