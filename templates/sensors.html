@@ -8,7 +8,7 @@
         <h1>Lista czujników</h1>
         <ol>
             {% for s in sensors %}
-                <li><a href="/{{ s.id }}/">{{ s }}</a></li>
+                <li><a href="/{{ s.pk }}/">{{ s }}</a></li>
             {% endfor %}
         </ol>
     </body>
