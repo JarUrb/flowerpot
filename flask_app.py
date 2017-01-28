@@ -39,8 +39,8 @@ def root():
 
 
 @app.route('/<int:sensor_pk>/')
-def measurement(sensor_id):
-    sensor = db.session.query(Sensor).filter_by(id=sensor_id).first()
+def measurement(sensor_pk):
+    sensor = db.session.query(Sensor).filter_by(pk=sensor_pk).first()
     measurements = db.session.query(Measurement).filter_by(sensor=sensor).order_by(desc(Measurement.timestamp)).all()
 
     return render_template(
