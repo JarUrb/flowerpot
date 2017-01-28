@@ -15,7 +15,7 @@ COLUMNS = OrderedDict([
     ('ordinal', 'Lp.'),
     ('timestamp', 'Data/godzina'),
     ('temperature', 'Temperatura [°C]'),
-    ('moisture', 'Wilgotnośc [%]'),
+    ('moisture', 'Wilgotność [%]'),
     ('light', 'Oświetlenie'),
     ('rssi', 'Sygnał'),
     ('vcc', 'Napięcie [V]'),
